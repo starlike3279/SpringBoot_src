@@ -1,0 +1,20 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container">
+    <h5 class="my-3 border-bottom pb-2">질문등록</h5>
+    <form th:action="@{/question/create}" method="post">
+        <div class="mb-3">
+            <label for="subject" class="form-label">제목</label>
+            <input type="text" name="subject" id="subject" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">내용</label>
+            <textarea name="content" id="content" class="form-control" rows="10"></textarea>
+        </div>
+        <input type="submit" value="저장하기" class="btn btn-primary my-2">
+    </form>
+</div>
+</html>
+
+
+// 제목은 일반적인 input 텍스트 창을 사용하고 내용은 글자 수에 제한이 없는 textarea 창을 사용했다. 
+// 그리고 입력한 내용을 /question/create URL로 post 방식을 이용해 전송할 수 있도록 form과 버튼을 추가했다.
