@@ -30,3 +30,16 @@
 // 이때 URL은 반드시 @{와 } 문자 사이에 입력해야 한다.
 // 타임리프에서는 /question/detail/과 같은 문자열과 ${question.id}와 같은 자바 객체의 값을 더할 때는 반드시 다음처럼 |로 좌우를 감싸 주어야 한다.
     
+/*
+// <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <table class="table">
+        (... 생략 ...)
+    </table>
+</div>
+</html>
+*/
+// layout.html 템플릿을 상속하려고 <html layout:decorate="~{layout}">을 사용했다.
+// 타임리프의 layout:decorate 속성은 템플릿의 레이아웃(부모 템플릿, 여기서는 layout.html)으로 사용할 템플릿을 설정한다
+// 속성값인 ~{layout}이 바로 layout.html 파일을 의미한다.
