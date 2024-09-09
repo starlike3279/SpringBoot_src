@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+// 앞으로 URL을 매핑할 때 반드시 /question으로 시작
 @RequestMapping("/question")
 // @RequiredArgsConstructor :
 // questionRepository 객체를 주입
@@ -21,6 +22,7 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
+    // @RequestMapping("/question")을 사용했기 때문에 /question + /list가 되어 최종 URL 매핑은 /question/list가 된다.
     @GetMapping("/list")
     //@ResponseBody 
     public String list(Model model) { // 매개변수로 Model을 지정하면 객체가 자동으로 생성된다.
