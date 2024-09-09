@@ -59,11 +59,26 @@ public class QuestionController {
     // 이때 질문 등록 템플릿(question_form.html)에서 입력 항목으로 사용한 subject, content의 이름과 
     // RequestParam의 value 값이 동일해야 한다.
     @PostMapping("/create")
-    public String questionCreate(@RequestParam(value="subject") String subject, @RequestParam(value="content") String content) {
+    // @Valid 애너테이션을 적용하면 QuestionForm의 @NotEmpty, @Size 등으로 설정한 검증 기능이 동작한다.
+    // 그리고 이어지는 BindingResult 매개변수는 @Valid 애너테이션으로 검증이 수행된 결과를 의미하는 객체이다.
+    public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
         // TODO 질문을 저장한다.
         // QuestionService의 create 메서드를 호출하여 질문 데이터(subject, content)를 저장하는 코드를 작성
-        this.questionService.create(subject, content); 
+        // this.questionService.create(subject, content); 
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+        this.questionService.create(questionForm.getSubject(), questionForm.getContent());
         return "redirect:/question/list"; // 질문 저장후 질문목록으로 이동
+
+        /*
+        BindingResult 매개변수는 항상 @Valid 매개변수 바로 뒤에 위치해야 한다. 
+        만약 두 매개변수의 위치가 정확하지 않다면 @Valid만 적용되어 입력값 검증 실패 시 400 오류가 발생한다.
+        */
+        /*
+        questionCreate 메서드는 bindResult.hasErrors()를 호출하여 오류가 있는 경우에는 
+        다시 제목과 내용을 작성하는 화면으로 돌아가도록 했고, 오류가 없을 경우에만 질문이 등록되도록 만들었다.
+        */
     }
 }
 
