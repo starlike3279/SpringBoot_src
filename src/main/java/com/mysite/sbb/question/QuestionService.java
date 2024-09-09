@@ -20,6 +20,8 @@ public class QuestionService {
 
     public Question getQuestion(Integer id) {
         Optional<Question> question = this.questionRepository.findById(id);
+        // id값에 해당하는 질문 데이터가 없을 경우에는 예외 클래스인 DataNotFoundException이 실행됨
+        // 이때 DataNotFoundException 클래스가 존재해야 에러가 안터짐
         if (question.isPresent()) {
             return question.get();
         } else {
