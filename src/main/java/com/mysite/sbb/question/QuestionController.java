@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+// 프리픽스(prefix) : URL의 접두사 또는 시작 부분을 의미
 // 앞으로 URL을 매핑할 때 반드시 /question으로 시작
 @RequestMapping("/question")
 // @RequiredArgsConstructor :
