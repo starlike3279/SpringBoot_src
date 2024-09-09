@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 @RequestMapping("/answer")
 @RequiredArgsConstructor
@@ -24,9 +26,13 @@ public class AnswerController {
         @PostMapping(value ="/create/{id}") 대신 @PostMapping("/create/{id}")처럼 value는 생략해도 된다.
     */
     @PostMapping("/create/{id}")
-    public String createAnswer(Model model, @PathVariable("id") Integer id, @RequestParam(value="content") String content) {
+    public String createAnswer(Model model, @PathVariable("id") Integer id, @Valid AnswerForm answerForm, BindingResult bindingResult) {
         Question question = this.questionService.getQuestion(id);
-        this.answerService.create(question, content);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("question", question);
+            return "question_detail";
+        }
+        this.answerService.create(question, answerForm.getContent());
         return String.format("redirect:/question/detail/%s", id);
     }
     /*
