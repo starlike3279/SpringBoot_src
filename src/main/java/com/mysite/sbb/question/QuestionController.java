@@ -23,7 +23,7 @@ public class QuestionController {
 
     @GetMapping("/list")
     //@ResponseBody 
-    public String list(Model model) { //매개변수로 Model을 지정하면 객체가 자동으로 생성된다.
+    public String list(Model model) { // 매개변수로 Model을 지정하면 객체가 자동으로 생성된다.
         List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
         return "question_list";
