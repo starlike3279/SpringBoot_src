@@ -51,7 +51,7 @@ public class QuestionController {
     //"[질문 등록하기]" 버튼을 통한 /question/create 요청은 GET 요청에 해당하므로 @GetMapping 애너테이션을 사용했다. 
     // questionCreate 메서드는 question_form 템플릿을 출력한다.
     @GetMapping("/create")
-    public String questionCreate() {
+    public String questionCreate(QuestionForm questionForm) {
         return "question_form";
     }
 
