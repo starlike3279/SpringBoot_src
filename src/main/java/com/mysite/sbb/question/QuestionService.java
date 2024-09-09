@@ -13,6 +13,7 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
+    // getList 메서드의 내용을 살펴보면, QuestionController에서 리포지터리를 사용했던 부분을 그대로 옮겼음
     public List<Question> getList() {
         return this.questionRepository.findAll();
     }
